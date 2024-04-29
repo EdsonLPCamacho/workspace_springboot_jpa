@@ -15,11 +15,16 @@ public class UserService {
 	@Autowired
 	private UserRepository usrRepository;
 	
+	
+
+	
 	public List<User> findAll(){
 		
 		return usrRepository.findAll();
 		
 	}
+	
+	
 	
 	public User findById(Long id) {
 		
@@ -27,6 +32,10 @@ public class UserService {
 		return obj.get();
 		
 	}
-	
+
+
+    public User save(User user) {
+        return usrRepository.save(user);
+    }
 
 }
