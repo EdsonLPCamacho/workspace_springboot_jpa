@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Profile;
 
 import com.webdevelopment.development.entity.Category;
 import com.webdevelopment.development.entity.OrderItem;
+import com.webdevelopment.development.entity.OrderItems;
 import com.webdevelopment.development.entity.Products;
 import com.webdevelopment.development.entity.User;
 import com.webdevelopment.development.entity.enums.OrderItemStatus;
 import com.webdevelopment.development.repositories.CategoryRepository;
 import com.webdevelopment.development.repositories.OrderItemRepository;
+import com.webdevelopment.development.repositories.OrderItemsRepository;
 import com.webdevelopment.development.repositories.ProductsRepository;
 import com.webdevelopment.development.repositories.UserRepository;
 
@@ -34,6 +36,9 @@ public class TestSetup implements CommandLineRunner {
     @Autowired
     private ProductsRepository productsRepository;
     
+    @Autowired
+    private OrderItemsRepository orderItemsRepository;
+    
     @Override
     public void run(String... args) throws Exception {
     	
@@ -51,6 +56,7 @@ public class TestSetup implements CommandLineRunner {
     	categoryRepository.saveAll(Arrays.asList(cat01, cat02));
     	productsRepository.saveAll(Arrays.asList(pd01, pd02, pd03, pd04, pd05));
     	
+   	
     	//Association between objects
     	pd01.getCategories().add(cat02);
     	pd02.getCategories().add(cat02);
@@ -74,5 +80,11 @@ public class TestSetup implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(usr1, usr2));
         orderItemRepository.saveAll(Arrays.asList(item01, item02));
+        
+    	//Seed
+    	OrderItems oi01 = new OrderItems(item01, pd01, 2, pd01.getPrice());
+    	
+    	//Save to database
+    	orderItemsRepository.saveAll(Arrays.asList(oi01));
     }
 }
