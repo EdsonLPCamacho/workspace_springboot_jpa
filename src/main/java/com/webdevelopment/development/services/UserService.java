@@ -11,31 +11,32 @@ import com.webdevelopment.development.repositories.UserRepository;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository usrRepository;
-	
-	
 
-	
-	public List<User> findAll(){
-		
+	public List<User> findAll() {
+
 		return usrRepository.findAll();
-		
+
 	}
-	
-	
-	
+
 	public User findById(Long id) {
-		
+
 		Optional<User> obj = usrRepository.findById(id);
 		return obj.get();
-		
+
 	}
 
+	public User save(User user) {
+		return usrRepository.save(user);
+	}
 
-    public User save(User user) {
-        return usrRepository.save(user);
-    }
+	// Save user to data base
+	public User insert(User obj) {
+
+		return usrRepository.save(obj); // Returns the saved object
+
+	}
 
 }

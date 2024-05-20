@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.webdevelopment.development.entity.Category;
 import com.webdevelopment.development.entity.OrderItem;
 import com.webdevelopment.development.entity.OrderItems;
+import com.webdevelopment.development.entity.Payment;
 import com.webdevelopment.development.entity.Products;
 import com.webdevelopment.development.entity.User;
 import com.webdevelopment.development.entity.enums.OrderItemStatus;
@@ -76,7 +77,7 @@ public class TestSetup implements CommandLineRunner {
 
         //ISO 8601 UTC Time
         OrderItem item01 = new OrderItem(null, Instant.parse("2024-04-24T11:37:00Z"), OrderItemStatus.WAITING_PAYMENT, usr1);
-        OrderItem item02 = new OrderItem(null, Instant.parse("2024-04-24T11:37:00Z"), OrderItemStatus.DELIVERED, usr2);
+        OrderItem item02 = new OrderItem(null, Instant.parse("2024-04-24T11:37:00Z"), OrderItemStatus.PAID, usr2);
 
         userRepository.saveAll(Arrays.asList(usr1, usr2));
         orderItemRepository.saveAll(Arrays.asList(item01, item02));
@@ -86,5 +87,13 @@ public class TestSetup implements CommandLineRunner {
     	
     	//Save to database
     	orderItemsRepository.saveAll(Arrays.asList(oi01));
+    	
+    	//Payment
+    	Payment pay = new Payment(null, Instant.parse("2024-04-24T13:37:00Z"), item02);
+    	item02.setPayment(pay);
+    	
+    	//JPA Save order payment
+    	orderItemRepository.save(item02);
+
     }
 }
