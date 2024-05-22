@@ -38,5 +38,10 @@ public class UserService {
 		return usrRepository.save(obj); // Returns the saved object
 
 	}
+	
+	//Delete user from data base
+	public void delete(Long id) {
+		usrRepository.deleteById(id);
+	}
 
 }
