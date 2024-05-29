@@ -1,6 +1,5 @@
 # Java & SpringBoot Project
-
-# Big Game Survey 
+ 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/EdsonLPCamacho/workspace_springboot_jpa/blob/main/LICENSE) 
 
 ## Project Description
