@@ -117,3 +117,6 @@ Edson L P Camacho
 
 https://www.linkedin.com/in/edsoncamacho/
 
+# Acknowledgments
+This project was created with the guidance and support of instructor Nelio Alves from DevSuperior.
+
