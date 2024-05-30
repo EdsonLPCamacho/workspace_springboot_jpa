@@ -22,23 +22,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping // Maps the endpoint GET /development/client
+    @GetMapping // Maps the end point GET /development/client
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> userList = userService.findAll();
         return ResponseEntity.ok(userList);
     }
 
-    @PostMapping("/register") // Maps the endpoint POST /development/client/register
+    @PostMapping("/register") // Maps the end point POST /development/client/register
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User savedUser = userService.save(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}") // Maps the endpoint GET /development/client/{id}
+    @GetMapping("/{id}") // Maps the end point GET /development/client/{id}
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
 
-    // Other methods for updating, deleting, etc.
 }
